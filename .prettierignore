@@ -1,0 +1,16 @@
+/*
+!/e2e
+/e2e/features/*.feature
+!/projects
+!/src
+/src/index.html
+/src/polyfills.ts
+/src/service-worker.js
+assets/
+!/assets/i18n
+browserslist
+!package.json
+*.ico
+e2e/output
+src/robots.txt
+e2e/dev/images
