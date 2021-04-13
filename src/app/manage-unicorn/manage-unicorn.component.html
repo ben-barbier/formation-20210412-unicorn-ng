@@ -1,0 +1,25 @@
+<form [formGroup]="manageUnicornForm">
+    <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input type="text" matInput formControlName="name" required />
+        <mat-error> Le nom est <strong>requis</strong></mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Date de naissance</mat-label>
+        <input type="number" matInput formControlName="birthyear" required />
+        <mat-error *ngIf="manageUnicornForm.controls.birthyear.hasError('required')">
+            L‘année de naissance est <strong>requise</strong>
+        </mat-error>
+        <mat-error *ngIf="manageUnicornForm.controls.birthyear.hasError('min')">
+            L‘année de naissance doit être supérieure à 1800
+        </mat-error>
+        <mat-error *ngIf="manageUnicornForm.controls.birthyear.hasError('max')">
+            L‘année de naissance doit être inférieure à l‘année courante
+        </mat-error>
+    </mat-form-field>
+    <div>
+        <button type="submit" [disabled]="manageUnicornForm.invalid" mat-raised-button color="primary">
+            Enregistrer
+        </button>
+    </div>
+</form>
