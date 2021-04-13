@@ -1,14 +1,30 @@
-<ul *ngIf="unicorn">
-    <li>{{ unicorn.id }}</li>
-    <li>{{ unicorn.name }}</li>
-    <li>{{ unicorn.weight }}</li>
-    <li>{{ age }}</li>
-    <li>{{ unicorn.hobbies }}</li>
-    <li>{{ unicorn.capacities }}</li>
-    <li>
-        <button type="button" (click)="remove()">remove</button>
-    </li>
-    <li>
-        <ng-content></ng-content>
-    </li>
-</ul>
+<mat-card *ngIf="unicorn">
+    <mat-card-header>
+        <img mat-card-avatar [src]="unicorn.photo" alt="photo" />
+        <mat-card-title>{{ unicorn.name }}</mat-card-title>
+        <mat-card-subtitle>Id: {{ unicorn.id }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="unicorn.photo" alt="Photo of {{ unicorn.name }}" />
+    <mat-card-content>
+        <ul>
+            <li>{{ unicorn.weight }}</li>
+            <li>{{ age }}</li>
+            <li>{{ unicorn.hobbies }}</li>
+            <li>{{ unicorn.capacities }}</li>
+        </ul>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-mini-fab color="warn" (click)="remove()">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary">
+            <mat-icon>visibility</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

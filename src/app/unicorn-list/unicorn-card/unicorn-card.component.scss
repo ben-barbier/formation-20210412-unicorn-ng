@@ -1,0 +1,11 @@
+mat-card {
+    max-width: 300px;
+    margin: 10px;
+    padding-bottom: 26px;
+
+    mat-card-actions {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 10px 0;
+    }
+}
