@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { UnicornListComponent } from './unicorn-list.component';
+import { UnicornCardComponent } from './unicorn-card.component';
 
-describe('UnicornListComponent', () => {
-    let component: UnicornListComponent;
-    let fixture: ComponentFixture<UnicornListComponent>;
+describe('UnicornCardComponent', () => {
+    let component: UnicornCardComponent;
+    let fixture: ComponentFixture<UnicornCardComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [UnicornListComponent],
+            declarations: [UnicornCardComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(UnicornListComponent);
+        fixture = TestBed.createComponent(UnicornCardComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
