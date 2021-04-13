@@ -12,11 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { AgePipe } from './shared/pipes/age.pipe';
 import { UnicornCardComponent } from './unicorn-list/unicorn-card/unicorn-card.component';
 import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
 
 @NgModule({
-    declarations: [AppComponent, UnicornListComponent, UnicornCardComponent, NavComponent],
+    declarations: [AppComponent, UnicornListComponent, UnicornCardComponent, NavComponent, AgePipe],
     imports: [
         BrowserModule,
         AppRoutingModule,

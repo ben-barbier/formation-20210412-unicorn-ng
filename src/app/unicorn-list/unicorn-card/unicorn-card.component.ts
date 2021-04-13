@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Unicorn } from '../../shared/models/unicorn.model';
 
 @Component({
@@ -6,18 +6,9 @@ import { Unicorn } from '../../shared/models/unicorn.model';
     templateUrl: './unicorn-card.component.html',
     styleUrls: ['./unicorn-card.component.scss'],
 })
-export class UnicornCardComponent implements OnInit {
+export class UnicornCardComponent {
     @Input() public unicorn: Unicorn | undefined;
     @Output() private removed = new EventEmitter<void>();
-
-    public age: number | '👴' | undefined;
-
-    ngOnInit(): void {
-        if (this.unicorn) {
-            const age = new Date().getFullYear() - this.unicorn.birthyear;
-            this.age = age > 60 ? '👴' : age;
-        }
-    }
 
     public remove(): void {
         this.removed.emit();
