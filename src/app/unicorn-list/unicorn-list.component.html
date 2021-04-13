@@ -1,7 +1,7 @@
 <p>Bonne nouvelle, il reste {{ count }} licornes à adopter 🚀 !!!</p>
 
-<div *ngIf="unicorns.length >= 3">
-    <app-unicorn-card [unicorn]="unicorns[0]"></app-unicorn-card>
-    <app-unicorn-card [unicorn]="unicorns[1]"></app-unicorn-card>
-    <app-unicorn-card [unicorn]="unicorns[2]"></app-unicorn-card>
-</div>
+<app-unicorn-card
+    *ngFor="let unicorn of unicorns"
+    [unicorn]="unicorn"
+    (removed)="removeUnicornFromList(unicorn)"
+></app-unicorn-card>
