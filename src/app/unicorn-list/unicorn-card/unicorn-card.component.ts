@@ -10,11 +10,12 @@ export class UnicornCardComponent implements OnInit {
     @Input() public unicorn: Unicorn | undefined;
     @Output() private removed = new EventEmitter<void>();
 
-    public age: number | undefined;
+    public age: number | '👴' | undefined;
 
     ngOnInit(): void {
         if (this.unicorn) {
-            this.age = new Date().getFullYear() - this.unicorn.birthyear;
+            const age = new Date().getFullYear() - this.unicorn.birthyear;
+            this.age = age > 60 ? '👴' : age;
         }
     }
 
