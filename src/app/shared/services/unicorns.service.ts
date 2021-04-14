@@ -13,4 +13,8 @@ export class UnicornsService {
     public getAll(): Observable<Unicorn[]> {
         return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
     }
+
+    public getAllWithCapacitiesLabels(): Observable<(Unicorn & { capacitiesLabels: string[] })[]> {
+        return undefined;
+    }
 }
