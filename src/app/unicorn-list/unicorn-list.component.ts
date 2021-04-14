@@ -11,7 +11,7 @@ export class UnicornListComponent {
     public unicorns: UnicornWithCapacitiesLabels[] = [];
 
     constructor(private unicornsService: UnicornsService) {
-        unicornsService.getAllWithCapacitiesLabels().subscribe(unicorns => {
+        unicornsService.getAllWithCapacitiesLabels3().subscribe(unicorns => {
             this.unicorns = unicorns;
         });
     }

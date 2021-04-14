@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
-import { concatAll, map, mergeMap, toArray } from 'rxjs/operators';
+import { forkJoin, from, Observable } from 'rxjs';
+import { concatAll, map, mergeMap, reduce, share, toArray } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { Capacity } from '../models/capacity.model';
 import { Unicorn, UnicornWithCapacitiesLabels } from '../models/unicorn.model';
 import { CapacitiesService } from './capacities.service';
 
@@ -28,6 +29,47 @@ export class UnicornsService {
                 ),
             ),
             toArray(),
+        );
+    }
+
+    public getAllWithCapacitiesLabels2(): Observable<UnicornWithCapacitiesLabels[]> {
+        return forkJoin([this.getAll(), this.capacitiesService.getAll()]).pipe(
+            map(([unicorns, capacities]) =>
+                unicorns.map(
+                    (u: Unicorn): UnicornWithCapacitiesLabels => ({
+                        ...u,
+                        capacitiesLabels: u.capacities.map(
+                            (c: number): string => capacities.find((c2: Capacity) => c2.id === c)?.label ?? '',
+                        ),
+                    }),
+                ),
+            ),
+        );
+    }
+
+    public getAllWithCapacitiesLabels3(): Observable<UnicornWithCapacitiesLabels[]> {
+        const unicorns$ = this.getAll().pipe(share());
+
+        const capacities$ = unicorns$.pipe(
+            concatAll(),
+            reduce((acc: number[], unicorn) => acc.concat(unicorn.capacities), []),
+            map(capacities => [...new Set(capacities)]), // 💡 : remove doublons
+            concatAll(),
+            mergeMap(capacitiesId => this.capacitiesService.get(capacitiesId)),
+            toArray(),
+        );
+
+        return forkJoin([unicorns$, capacities$]).pipe(
+            map(([unicorns, capacities]) =>
+                unicorns.map(
+                    (u: Unicorn): UnicornWithCapacitiesLabels => ({
+                        ...u,
+                        capacitiesLabels: u.capacities.map(
+                            (c: number): string => capacities.find((c2: Capacity) => c2.id === c)?.label ?? '',
+                        ),
+                    }),
+                ),
+            ),
         );
     }
 }
