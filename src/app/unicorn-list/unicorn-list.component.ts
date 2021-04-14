@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Unicorn } from '../shared/models/unicorn.model';
+import { Unicorn, UnicornWithCapacitiesLabels } from '../shared/models/unicorn.model';
 import { UnicornsService } from '../shared/services/unicorns.service';
 
 @Component({
@@ -8,10 +8,10 @@ import { UnicornsService } from '../shared/services/unicorns.service';
     styleUrls: ['./unicorn-list.component.scss'],
 })
 export class UnicornListComponent {
-    public unicorns: Unicorn[] = [];
+    public unicorns: UnicornWithCapacitiesLabels[] = [];
 
     constructor(private unicornsService: UnicornsService) {
-        unicornsService.getAll().subscribe(unicorns => {
+        unicornsService.getAllWithCapacitiesLabels().subscribe(unicorns => {
             this.unicorns = unicorns;
         });
     }

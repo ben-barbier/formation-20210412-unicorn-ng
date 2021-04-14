@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Unicorn } from '../../shared/models/unicorn.model';
+import { UnicornWithCapacitiesLabels } from '../../shared/models/unicorn.model';
 
 @Component({
     selector: 'app-unicorn-card',
@@ -7,7 +7,7 @@ import { Unicorn } from '../../shared/models/unicorn.model';
     styleUrls: ['./unicorn-card.component.scss'],
 })
 export class UnicornCardComponent {
-    @Input() public unicorn: Unicorn | undefined;
+    @Input() public unicorn: UnicornWithCapacitiesLabels | undefined;
     @Output() private removed = new EventEmitter<void>();
 
     public remove(): void {

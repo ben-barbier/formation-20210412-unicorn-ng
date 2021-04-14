@@ -7,3 +7,9 @@ export interface Unicorn {
     hobbies: string[];
     capacities: number[];
 }
+
+export interface UnicornWithCapacitiesLabels extends Unicorn {
+    capacitiesLabels: string[];
+}
+
+// export type UnicornWithCapacitiesLabels = Unicorn & { capacitiesLabels: string[] };
