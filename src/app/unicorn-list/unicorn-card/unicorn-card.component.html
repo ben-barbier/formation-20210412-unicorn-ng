@@ -11,6 +11,7 @@
             <li>{{ unicorn.birthyear | age }}</li>
             <li>{{ unicorn.hobbies }}</li>
             <li>{{ unicorn.capacitiesLabels }}</li>
+            <li>IsInCart: {{ isInCart$ | async }}</li>
         </ul>
     </mat-card-content>
     <mat-card-actions>
@@ -20,7 +21,7 @@
         <button mat-mini-fab color="primary">
             <mat-icon>edit</mat-icon>
         </button>
-        <button mat-mini-fab color="primary">
+        <button mat-mini-fab [color]="(isInCart$ | async) ? 'accent' : 'primary'" (click)="toggleToCart()">
             <mat-icon>favorite</mat-icon>
         </button>
         <button mat-mini-fab color="primary">

@@ -26,6 +26,8 @@
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>unicorn-ng</span>
+            <span class="spacer"></span>
+            <span>{{ (cart$ | async)?.length }} <mat-icon>favorite</mat-icon></span>
         </mat-toolbar>
         <!-- Add Content Here -->
         <ng-content></ng-content>

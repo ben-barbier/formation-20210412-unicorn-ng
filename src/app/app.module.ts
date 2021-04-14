@@ -1,5 +1,5 @@
 import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,10 +15,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ManageUnicornComponent } from './manage-unicorn/manage-unicorn.component';
+import { LoggerInterceptor } from './shared/interceptors/logger.interceptor';
 import { NavComponent } from './shared/nav/nav.component';
 import { AgePipe } from './shared/pipes/age.pipe';
 import { UnicornCardComponent } from './unicorn-list/unicorn-card/unicorn-card.component';
 import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
+
+const httpInterceptorProviders = [
+    { provide: HTTP_INTERCEPTORS, useClass: LoggerInterceptor, multi: true },
+    // TODO: ...
+];
 
 @NgModule({
     declarations: [
@@ -45,7 +51,7 @@ import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
         MatInputModule,
         ReactiveFormsModule,
     ],
-    providers: [],
+    providers: [...httpInterceptorProviders],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

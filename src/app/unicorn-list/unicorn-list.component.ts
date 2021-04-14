@@ -16,12 +16,6 @@ export class UnicornListComponent {
         });
     }
 
-    // FIXME: bad practice
-    get count(): number {
-        console.count('count');
-        return this.unicorns.length;
-    }
-
     public removeUnicornFromList(unicornToRemove: Unicorn): void {
         this.unicorns = this.unicorns.filter(unicorn => unicornToRemove.id !== unicorn.id);
     }
