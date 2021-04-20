@@ -13,6 +13,10 @@ import { CapacitiesService } from './capacities.service';
 export class UnicornsService {
     constructor(private http: HttpClient, private capacitiesService: CapacitiesService) {}
 
+    public getById(id: number): Observable<Unicorn> {
+        return this.http.get<Unicorn>(`${environment.apiUrl}/unicorns/${id}`);
+    }
+
     public getAll(): Observable<Unicorn[]> {
         return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
     }

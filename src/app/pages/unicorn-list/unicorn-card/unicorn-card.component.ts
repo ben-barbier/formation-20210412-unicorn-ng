@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { UnicornWithCapacitiesLabels } from '../../shared/models/unicorn.model';
-import { CartService } from '../../shared/services/cart.service';
+import { UnicornWithCapacitiesLabels } from '../../../shared/models/unicorn.model';
+import { CartService } from '../../../shared/services/cart.service';
 
 @Component({
     selector: 'app-unicorn-card',

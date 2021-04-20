@@ -9,9 +9,16 @@
     >
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item href="#">Link 1</a>
-            <a mat-list-item href="#">Link 2</a>
-            <a mat-list-item href="#">Link 3</a>
+            <a
+                mat-list-item
+                routerLink="/unicorns"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+            >
+                List
+            </a>
+            <a mat-list-item routerLink="/unicorns/1" routerLinkActive="active">Unicorn 1</a>
+            <a mat-list-item routerLink="/unicorns/2" routerLinkActive="active">Unicorn 2</a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -30,6 +37,6 @@
             <span>{{ (cart$ | async)?.length }} <mat-icon>favorite</mat-icon></span>
         </mat-toolbar>
         <!-- Add Content Here -->
-        <ng-content></ng-content>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

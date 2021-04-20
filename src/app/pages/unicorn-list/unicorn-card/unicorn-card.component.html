@@ -24,7 +24,7 @@
         <button mat-mini-fab [color]="(isInCart$ | async) ? 'accent' : 'primary'" (click)="toggleToCart()">
             <mat-icon>favorite</mat-icon>
         </button>
-        <button mat-mini-fab color="primary">
+        <button mat-mini-fab color="primary" [routerLink]="['/unicorns', unicorn.id]">
             <mat-icon>visibility</mat-icon>
         </button>
     </mat-card-actions>

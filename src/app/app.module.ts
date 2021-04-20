@@ -15,11 +15,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ManageUnicornComponent } from './manage-unicorn/manage-unicorn.component';
+import { UnicornCardComponent } from './pages/unicorn-list/unicorn-card/unicorn-card.component';
+import { UnicornListComponent } from './pages/unicorn-list/unicorn-list.component';
 import { LoggerInterceptor } from './shared/interceptors/logger.interceptor';
 import { NavComponent } from './shared/nav/nav.component';
 import { AgePipe } from './shared/pipes/age.pipe';
-import { UnicornCardComponent } from './unicorn-list/unicorn-card/unicorn-card.component';
-import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
+import { UnicornDetailsComponent } from './pages/unicorn-details/unicorn-details.component';
 
 const httpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: LoggerInterceptor, multi: true },
@@ -34,6 +35,7 @@ const httpInterceptorProviders = [
         NavComponent,
         AgePipe,
         ManageUnicornComponent,
+        UnicornDetailsComponent,
     ],
     imports: [
         BrowserModule,
