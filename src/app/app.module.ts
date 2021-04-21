@@ -15,8 +15,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '../environments/environment';
@@ -76,8 +74,6 @@ const httpInterceptorProviders = [
             },
         }),
         AppStoreModule,
-        StoreModule.forRoot({}, {}), // 💡 : laisser vide (cf: app-store.module.ts)
-        EffectsModule.forRoot([]), // 💡 : laisser vide (cf: app-store.module.ts)
     ],
     providers: [
         ...httpInterceptorProviders,
