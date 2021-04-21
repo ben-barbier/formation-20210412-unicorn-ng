@@ -21,6 +21,10 @@ export class UnicornsService {
         return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
     }
 
+    public delete(unicorn: Unicorn): Observable<void> {
+        return this.http.delete<void>(`${environment.apiUrl}/unicorns/${unicorn.id}`);
+    }
+
     public getAllWithCapacitiesLabels(): Observable<UnicornWithCapacitiesLabels[]> {
         return this.getAll().pipe(
             concatAll(),

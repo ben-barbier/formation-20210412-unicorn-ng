@@ -21,6 +21,30 @@ export class UnicornsEffects {
         ),
     );
 
+    getUnicorn$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UnicornsActions.getUnicorn),
+            switchMap(action =>
+                this.unicornsService.getById(action.id).pipe(
+                    map(unicorn => UnicornsActions.getUnicornSuccess({ unicorn })),
+                    catchError(() => of(UnicornsActions.getUnicornError())),
+                ),
+            ),
+        ),
+    );
+
+    // TODO
     // updateUnicorn$ = ...
-    // deleteUnicorn$ = ...
+
+    deleteUnicorn$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UnicornsActions.deleteUnicorn),
+            switchMap(action =>
+                this.unicornsService.delete(action.unicorn).pipe(
+                    map(() => UnicornsActions.deleteUnicornSuccess({ unicorn: action.unicorn })),
+                    catchError(() => of(UnicornsActions.deleteUnicornError())),
+                ),
+            ),
+        ),
+    );
 }

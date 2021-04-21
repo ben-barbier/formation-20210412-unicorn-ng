@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { UnicornWithCapacitiesLabels } from '../../../shared/models/unicorn.model';
+import { Unicorn } from '../../../shared/models/unicorn.model';
 import { CartService } from '../../../shared/services/cart.service';
+import { UnicornsDispatchers } from '../../../store/dispatchers/unicorns.dispatchers';
 
 @Component({
     selector: 'app-unicorn-card',
@@ -10,12 +11,11 @@ import { CartService } from '../../../shared/services/cart.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnicornCardComponent implements OnInit {
-    @Input() public unicorn: UnicornWithCapacitiesLabels | undefined;
-    @Output() private removed = new EventEmitter<void>();
+    @Input() public unicorn: Unicorn | undefined;
 
     public isInCart$: Observable<boolean> = of(false);
 
-    constructor(private cartService: CartService) {}
+    constructor(private cartService: CartService, private unicornsDispatchers: UnicornsDispatchers) {}
 
     ngOnInit(): void {
         if (this.unicorn) {
@@ -24,7 +24,7 @@ export class UnicornCardComponent implements OnInit {
     }
 
     public remove(): void {
-        this.removed.emit();
+        this.unicorn && this.unicornsDispatchers.deleteUnicorn(this.unicorn);
     }
 
     public toggleToCart(): void {

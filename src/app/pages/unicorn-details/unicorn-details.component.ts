@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { interval, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { UnicornsService } from '../../shared/services/unicorns.service';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { switchMap } from 'rxjs/operators';
+import { UnicornsDispatchers } from '../../store/dispatchers/unicorns.dispatchers';
+import { UnicornsSelectors } from '../../store/selectors/unicorns.selectors';
 
 @UntilDestroy()
 @Component({
@@ -12,17 +12,13 @@ import { UnicornsService } from '../../shared/services/unicorns.service';
     styleUrls: ['./unicorn-details.component.scss'],
 })
 export class UnicornDetailsComponent {
-    public unicorn$ = this.route.params.pipe(switchMap(params => this.unicornsService.getById(params.id)));
-    public time$: Observable<Date>;
-    public time: Date | undefined;
+    public unicorn$ = this.route.params.pipe(switchMap(params => this.unicornsSelectors.unicorn$(+params.id)));
 
-    constructor(private route: ActivatedRoute, private unicornsService: UnicornsService) {
-        this.time$ = interval(1000).pipe(
-            tap(i => console.log(i)),
-            map(() => new Date()),
-            untilDestroyed(this),
-        );
-
-        this.time$.subscribe(time => (this.time = time));
+    constructor(
+        private readonly route: ActivatedRoute,
+        private readonly unicornsSelectors: UnicornsSelectors,
+        private readonly unicornsDispatchers: UnicornsDispatchers,
+    ) {
+        this.route.params.subscribe(params => unicornsDispatchers.getUnicorn(+params.id));
     }
 }

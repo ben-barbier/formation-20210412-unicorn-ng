@@ -1,9 +1,5 @@
 <p>Bonne nouvelle, il reste {{ 'count' }} licornes à adopter 🚀 !!!</p>
 
 <div class="unicorns-container">
-    <app-unicorn-card
-        *ngFor="let unicorn of unicorns"
-        [unicorn]="unicorn"
-        (removed)="removeUnicornFromList(unicorn)"
-    ></app-unicorn-card>
+    <app-unicorn-card *ngFor="let unicorn of unicorns$ | async" [unicorn]="unicorn"></app-unicorn-card>
 </div>
