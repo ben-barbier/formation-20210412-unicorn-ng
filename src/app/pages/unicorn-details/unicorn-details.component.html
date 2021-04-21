@@ -1,1 +1,5 @@
-<pre *ngIf="unicorn$ | async as unicorn">{{ unicorn | json }}</pre>
+<h2>{{ time | json }}</h2>
+
+<pre *ngIf="unicorn$ | async as unicorn">
+    {{ unicorn | json }}
+</pre>

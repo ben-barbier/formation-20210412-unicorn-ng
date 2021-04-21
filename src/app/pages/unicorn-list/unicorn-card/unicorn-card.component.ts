@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { UnicornWithCapacitiesLabels } from '../../../shared/models/unicorn.model';
 import { CartService } from '../../../shared/services/cart.service';
@@ -7,6 +7,7 @@ import { CartService } from '../../../shared/services/cart.service';
     selector: 'app-unicorn-card',
     templateUrl: './unicorn-card.component.html',
     styleUrls: ['./unicorn-card.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnicornCardComponent implements OnInit {
     @Input() public unicorn: UnicornWithCapacitiesLabels | undefined;
@@ -32,5 +33,10 @@ export class UnicornCardComponent implements OnInit {
         }
 
         this.cartService.toggleToCart(this.unicorn);
+    }
+
+    public getAge(birthyear: number) {
+        console.count('getAge');
+        return new Date().getFullYear() - birthyear;
     }
 }
