@@ -33,8 +33,17 @@ export class UnicornsEffects {
         ),
     );
 
-    // TODO
-    // updateUnicorn$ = ...
+    // updateUnicorn$ = createEffect(() =>
+    //     this.actions$.pipe(
+    //         ofType(UnicornsActions.updateUnicorn),
+    //         switchMap(action =>
+    //             this.unicornsService.update(action.unicorn).pipe(
+    //                 map(unicorn => UnicornsActions.updateUnicornSuccess({ unicorn })),
+    //                 catchError(() => of(UnicornsActions.updateUnicornError())),
+    //             ),
+    //         ),
+    //     ),
+    // );
 
     deleteUnicorn$ = createEffect(() =>
         this.actions$.pipe(

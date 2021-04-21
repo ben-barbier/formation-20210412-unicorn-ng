@@ -4,7 +4,7 @@ import { Unicorn } from '../../shared/models/unicorn.model';
 import { EntityState } from '../reducers';
 
 // selectors
-const getUnicorns = createFeatureSelector<Unicorn[]>('unicorns');
+export const getUnicorns = createFeatureSelector<Unicorn[]>('unicorns');
 const getUnicorn = createSelector(getUnicorns, (state: Unicorn[], prop: { id: number }) =>
     state.find(u => u.id === prop.id),
 );
